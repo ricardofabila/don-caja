@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Don Caja | Ver Cadena</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <br />
+    <br />
+
+    <main class="container">
+
+      <div class="text-center">
+          <h1>Ultimos {{ .number }} bloques de transacciones</h1>
+      </div>
+
+      {{ range .blocks }}
+      <div class="panel panel-success">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+          {{ .BlockHead.Timestamp }} por {{ .BlockHead.MinedByUser }}
+        </div>
+          
+        <table class="table table-striped">
+          <tr>
+            <th>Nombre</th>
+            <th>Monto</th>
+          </tr>
+          {{ range .BlockBody.Transactions }}
+          <tr>
+            <td>{{ .UserName }}</td>
+            <td>{{ .Amount }}</td>
+          </tr>
+          {{ end }}
+        </table>
+
+      </div>
+
+      {{ end }}
+
+    </main>
+
+    <br />
+    <br />
+  </body>
+</html>

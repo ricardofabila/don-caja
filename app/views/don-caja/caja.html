@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>DonCaja</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/flexboxgrid.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/forms.css">
+</head>
+<body>
+
+<main id="app"></main>
+
+<script src="public/js/don-caja/caja.js"></script>
+<script>
+    var node = document.getElementById('app');
+    var app = Elm.Main.embed(node, {
+        successPageUrl: {{ url "App.Index"}},
+        getUsersUrl: "http://localhost:9000/users",
+        createNewUserUrl: "http://localhost:9000/user",
+        addDepositUrl: "http://localhost:9000/deposit",
+        addTransactionsUrl: "http://localhost:9000/transactions",
+        csrf_token: ""
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+package controllers
+
+import (
+	"bitbucket.org/ricardofabila/revel-first-test/app/models"
+	"encoding/json"
+	"fmt"
+	"github.com/revel/revel"
+	"strconv"
+)
+
+type JsonDataController struct {
+	*revel.Controller
+}
+
+func (c JsonDataController) JsonBindingToModel() revel.Result {
+
+	// url paremters are all binded as strings, so they must be converted
+	price, err := strconv.ParseFloat(c.Params.Get("price"), 64)
+	name := c.Params.Get("name")
+
+	if err == nil && name != "" {
+		var dish models.Dish = models.Dish{name, price}
+		fmt.Println(dish)
+	}
+
+	// the data context is a map[string]interface{}
+	// some predetermined injected values to this map are:
+	// Errors
+	// {{ .errors.[fieldName].[validationResult] }}
+	// Flash messages
+	// {{ .flash[messageName] }}
+	return c.Render()
+}
+
+// best tutorial on working with json https://eager.io/blog/go-and-json/
+
+// TO BE ABLE TO BIND JSON TO STRUCTS, THE FIEDS MUST BE PUBLIC (UPPERCASE) OR THEY WILL BE SKIPED
+type Testing struct {
+	A string  `json:"a"`
+	B float64 `json:"b"`
+}
+
+/*
+bool, for JSON booleans
+float64, for JSON numbers
+string, for JSON strings
+[]interface{}, for JSON arrays
+map[string]interface{}, for JSON objects
+nil for JSON null
+*/
+
+func (c JsonDataController) BindJSONExample() revel.Result {
+
+	var test Testing
+
+	// if there is an error while decoding the json request
+	if error := c.Params.BindJSON(&test); error != nil {
+		return c.RenderText("there awas an error with the json passed")
+	}
+
+	fmt.Printf("\n\n  %v  \n\n", test)
+
+	return c.RenderText("OK")
+}
+
+func (c JsonDataController) JsonDecodingUnmarshall() revel.Result {
+
+	var test Testing
+
+	if error := json.Unmarshal(c.Params.JSON, &test); error != nil {
+		return c.RenderText("there awas an error with the json passed")
+	}
+
+	fmt.Println(string(c.Params.JSON))
+
+	fmt.Printf("\n\n  %v  \n\n", test)
+
+	return c.RenderText("OK")
+}
+
+func (c JsonDataController) JSONToGenericMapExample() revel.Result {
+
+	// Ok, so aparentely, we use a mao to Interface (any type) to bid json data and then access it
+	var jsonData map[string]interface{}
+
+	// if there is an error while decoding the json request
+	if error := c.Params.BindJSON(&jsonData); error != nil {
+		return c.RenderText("there awas an error with the json passed")
+	}
+
+	/*
+		{
+			"Name" : "pizza",
+			"Price" :  50.29,
+			"stuff" : [
+				"a",
+				{
+					"x": "y"
+				}
+				]
+		}
+	*/
+
+	// this is how you would access "y"
+	fmt.Println(jsonData["stuff"].([]interface{})[1].(map[string]interface{})["x"])
+
+	// The data itself is an array of bytes that can be casted to a string
+	fmt.Println("Request body: ", string(c.Params.JSON))
+
+	return c.RenderText("OK")
+}
+
+func (c JsonDataController) JsonDecoderExample() revel.Result {
+
+	// Aparently the getBody method doesnot longer works with jso data
+	var dish models.Dish
+	decoder := json.NewDecoder(c.Request.GetBody())
+	decoder.Decode(&dish)
+
+	fmt.Printf("the dish is: %v \n\n ", dish)
+
+	return c.RenderText("OK")
+}

@@ -1,0 +1,38 @@
+package controllers
+
+import (
+	"bitbucket.org/ricardofabila/don-caja/app/blockchain"
+	"bitbucket.org/ricardofabila/don-caja/app/models"
+	"fmt"
+	"github.com/revel/revel"
+)
+
+type TransactionsController struct {
+	*revel.Controller
+}
+
+func (c TransactionsController) AddDeposit() revel.Result {
+
+	var transaction models.Transaction
+
+	// if there is an error while decoding the json request
+	if error := c.Params.BindJSON(&transaction); error != nil {
+		c.Response.Status = 422
+		return c.RenderJSON(map[string]string{"error": "Error registrando transaccion"})
+	}
+
+	if transaction.UserName == "" || transaction.Amount < 0 {
+		c.Response.Status = 422
+		return c.RenderJSON(map[string]string{"error": "Error registrando transaccion: usuario vacio o monto negativo "})
+	}
+
+	// TODO: get the blockchain's state and get the user by its username
+	// TODO: sumar el monto al monto actual
+	// TODO: crear un nuevo state con el usuario actualizado
+	// TODO: crear una transaccion con el usuario y el monto
+	// TODO: agregar nuevo state y transaccion al block, minar y agregar a la BC
+
+	fmt.Println("Transaction created")
+
+	return c.RenderJSON(transaction)
+}

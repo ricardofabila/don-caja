@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "watch": "chokidar '**/*.elm' -c 'elm make Main.elm --warn --output ../public/js/don-caja/caja.js --debug' --initial",
+    "prod": "elm make Main.elm --output ../public/js/don-caja/caja.js"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^1.2.0",
+    "elm": "0.18"
+  },
+  "dependencies": {
+    "elm-format": "^0.8.1"
+  }
+}

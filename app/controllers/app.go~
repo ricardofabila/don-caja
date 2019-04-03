@@ -1,0 +1,94 @@
+package controllers
+
+import (
+	"bitbucket.org/ricardofabila/revel-first-test/app/models"
+	"encoding/json"
+	"fmt"
+	"github.com/revel/revel"
+	"strconv"
+)
+
+type App struct {
+	*revel.Controller
+}
+
+func (c App) Index() revel.Result {
+	return c.Render()
+}
+
+func (c App) About() revel.Result {
+
+	price, err := strconv.ParseFloat(c.Params.Get("price"), 64)
+
+	if err == nil {
+		var dish models.Dish = models.Dish{c.Params.Get("name"), price}
+		fmt.Println(dish)
+	}
+
+	// the data context is a map[string]interface{}
+	// some predetermined injected values to this map are:
+	// Errors
+	// {{ .errors.[fieldName].[validationResult] }}
+	// Flash messages
+	// {{ .flash[messageName] }}
+	return c.Render()
+}
+
+type Testing struct {
+	a string  `json:"a"`
+	b float64 `json:"b"`
+}
+
+func (c App) JsonDecodingExample() revel.Result {
+
+	var test Testing
+
+	// if there is an error while decoding the json request
+	// does not currently work with the custom struct, use a map of string to empty interface instead
+	if error := c.Params.BindJSON(&test); error != nil {
+		return c.RenderText("there awas an error with the json passed")
+	}
+
+	fmt.Printf("\n\n  %v  \n\n", test)
+
+	return c.RenderText("OK")
+}
+
+func (c App) ReceiveJsonDataTest() revel.Result {
+
+	// Ok, so aparentely, we use a mao to Interface (any type) to bid json data and then access it
+	var jsonData map[string]interface{}
+
+	// if there is an error while decoding the json request
+	if error := c.Params.BindJSON(&jsonData); error != nil {
+		return c.RenderText("there awas an error with the json passed")
+	}
+
+	/*
+		{
+			"Name" : "pizza",
+			"Price" :  50.29,
+			"stuff" : [
+				"a",
+				{
+					"x": "y"
+				}
+				]
+		}
+	*/
+
+	// this is how you would access "y"
+	fmt.Println(jsonData["stuff"].([]interface{})[1].(map[string]interface{})["x"])
+
+	// The data itself is an array of bytes that can be casted to a string
+	fmt.Println("Request body: ", string(c.Params.JSON))
+
+	// Aparently the getBody method doesnot longer works with jso data
+	var dish models.Dish
+	decoder := json.NewDecoder(c.Request.GetBody())
+	decoder.Decode(&dish)
+
+	fmt.Printf("the dish is: %v \n\n ", dish)
+
+	return c.RenderText("OK")
+}

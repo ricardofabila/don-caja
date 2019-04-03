@@ -1,0 +1,6 @@
+{"caller":"server.go:68","error":"runtime error: invalid memory address or nil pointer dereference","lvl":"CRIT","module":"revel","msg":"Recovered error in startup","t":"2019-04-02T21:15:08.542218871-06:00"}
+{"caller":"server.go:68","error":"runtime error: invalid memory address or nil pointer dereference","lvl":"CRIT","module":"revel","msg":"Recovered error in startup","t":"2019-04-02T21:15:15.711127198-06:00"}
+{"caller":"server.go:68","error":"runtime error: invalid memory address or nil pointer dereference","lvl":"CRIT","module":"revel","msg":"Recovered error in startup","t":"2019-04-02T21:15:19.839524236-06:00"}
+{"caller":"server.go:68","error":"runtime error: invalid memory address or nil pointer dereference","lvl":"CRIT","module":"revel","msg":"Recovered error in startup","t":"2019-04-02T21:16:28.212277192-06:00"}
+{"caller":"server.go:68","error":"runtime error: invalid memory address or nil pointer dereference","lvl":"CRIT","module":"revel","msg":"Recovered error in startup","t":"2019-04-02T21:17:00.183284521-06:00"}
+{"caller":"server.go:68","error":"runtime error: invalid memory address or nil pointer dereference","lvl":"CRIT","module":"revel","msg":"Recovered error in startup","t":"2019-04-02T21:19:03.321157543-06:00"}

@@ -1,0 +1,13 @@
+package controllers
+
+import (
+	"github.com/revel/revel"
+)
+
+type ClientsController struct {
+	*revel.Controller
+}
+
+func (c ClientsController) GetAllUsers() revel.Result {
+	return c.RenderTemplate("don-caja/caja.html")
+}

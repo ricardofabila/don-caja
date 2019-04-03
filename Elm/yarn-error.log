@@ -1,0 +1,40 @@
+Arguments: 
+  /home/ricardofabila/.nvm/versions/node/v9.11.2/bin/node /home/ricardofabila/.nvm/versions/node/v9.11.2/bin/yarn
+
+PATH: 
+  /home/ricardofabila/go/bin:/home/ricardofabila/Komodo-Edit-11/bin:/home/ricardofabila/.pyenv/plugins/pyenv-virtualenv/shims:/home/ricardofabila/.pyenv/shims:/home/ricardofabila/.pyenv/bin:/home/ricardofabila/.nvm/versions/node/v9.11.2/bin:/home/ricardofabila/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/snap/bin
+
+Yarn version: 
+  1.10.1
+
+Node version: 
+  9.11.2
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/ricardofabila/go/src/bitbucket.org/ricardofabila/revel-first-test/Elm/package.json: Unexpected token } in JSON at position 235
+      at JSON.parse (<anonymous>)
+      at /home/ricardofabila/.nvm/versions/node/v9.11.2/lib/node_modules/yarn/lib/cli.js:1136:59
+      at Generator.next (<anonymous>)
+      at step (/home/ricardofabila/.nvm/versions/node/v9.11.2/lib/node_modules/yarn/lib/cli.js:98:30)
+      at /home/ricardofabila/.nvm/versions/node/v9.11.2/lib/node_modules/yarn/lib/cli.js:109:13
+      at <anonymous>
+
+npm manifest: 
+  {
+    "private": true,
+    "scripts": {
+      "watch": "chokidar '**/*.elm' -c 'elm make Main.elm --warn --output ../public/js/cashier/sale-point/cashier.js --debug' --initial"
+    },
+    	"elm" : "0.18.0-exp5",
+      "chokidar-cli": "^1.2.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

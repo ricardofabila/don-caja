@@ -1,0 +1,222 @@
+body {
+  background: #f4f8fb;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.content {
+  min-height: 600px;
+}
+
+.btn {
+  background: lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: white;
+  font-weight: 500;
+  border-radius: 5px;
+  font-size: 14pt;
+  cursor: pointer;
+}
+
+.btn.btn__green {
+  background: #b8e986;
+}
+
+.btn.btn__blue {
+  background: #4a90e2;
+}
+
+.btn.btn__yellow {
+    background: #ffc107;
+    color: #212529;
+}
+
+.btn.btn__grey {
+  background: lightgrey;
+}
+
+.card {
+}
+
+.card--header {
+  background: #fbfcfe;
+  border-radius: 5px 5px 0 0;
+}
+
+.card--header-title {
+  color: #3f3f3f;
+  font-size: 18pt;
+  padding-left: 28px;
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+.card--header-subtitle {
+  color: #686868;
+  font-size: 14pt;
+  padding-left: 28px;
+  padding-bottom: 22px;
+}
+
+.card--footer {
+  background: #fbfcfe;
+  border-radius: 0 0 5px 5px;
+}
+
+.transaction {
+  height: 45px;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.transaction.transaction__yellow {
+  background: #fffef9;
+}
+
+.transaction--cross {
+  text-align: center;
+  flex-basis: 10%;
+  cursor: pointer;
+}
+
+.transaction--name {
+  text-align: left;
+  flex-basis: 70%;
+  color: #686868;
+  font-size: 14pt;
+}
+
+.transaction--amount {
+  text-align: right;
+  flex-basis: 20%;
+  color: #686868;
+  font-weight: 200;
+  font-size: 14pt;
+  padding: 0 50px;
+}
+
+.transactions--total {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.transactions--total {
+  font-size: 18pt;
+  color: #686868;
+  font-weight: 300;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-right: 50px;
+  text-align: right;
+}
+
+.transactions--total-text {
+  display: flex;
+}
+
+.transactions--total-text span {
+  flex-basis: 50%;
+}
+
+.new-transaction {
+  padding: 30px 25px;
+  border-top: #cbcbcb 1px solid;
+}
+
+.new-transaction--title {
+  color: #3f3f3f;
+  font-size: 18pt;
+  padding-left: 8px;
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+.new-transaction-register {
+  display: flex;
+}
+
+.new-transaction-register-user {
+  flex-basis: 50%;
+  padding: 0 10px;
+}
+
+.new-transaction-register-amount {
+  flex-basis: 20%;
+  padding: 0 10px;
+}
+
+.new-transaction-register-button {
+  flex-basis: 30%;
+  background: #4a90e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 500;
+  border-radius: 5px;
+  font-size: 12pt;
+  height: 30px;
+  cursor: pointer;
+}
+
+.account {
+  height: 45px;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.account.account__yellow {
+  background: #fffef9;
+}
+
+.account--name {
+  text-align: left;
+  flex-basis: 80%;
+  color: #686868;
+  font-size: 14pt;
+  padding-left: 30px;
+}
+
+.account--amount {
+  text-align: right;
+  flex-basis: 20%;
+  color: #84a959;
+  font-weight: 200;
+  font-size: 14pt;
+  padding: 0 50px;
+}
+
+.account--amount-red {
+  color: #df4f60;
+}
+
+.view-more {
+  height: 55px;
+  font-size: 14pt;
+  font-weight: 200;
+  color: #ababab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+footer {
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
+
+.footer--button {
+  text-align: center;
+  font-size: 18pt;
+  margin: 35px 25px;
+  color: #3f3f3f;
+  cursor: pointer;
+}
